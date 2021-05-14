@@ -133,7 +133,7 @@ If you think of this without the colors only the lines (i.e. the edges) you woul
 
 Which is pretty much just painting where the colors change, in this case you just go where the black turns into white and draw a line that separetes them.
 
-That's what Sobel does, more specifically, in mathematics you have a tool to calculate differences, its called derivatives, calcutaling a derivative is pretty much calculating how much something changed from a point 1 to a point 2, in this case, how much colors are chanching from one pixel to another one, are they the same, or are they completely the opposite?
+That's what Sobel does, more specifically, in mathematics you have a tool to calculate differences, its called derivatives, calcutaling a derivative is pretty much calculating how much something is changing between two points, in this case, how much colors are chanching from one pixel to another one, are they the same, or are they completely the opposite?
 
 Sobel does that using the idea of convolution, and if you have never heard of it, its pretty simple.
 

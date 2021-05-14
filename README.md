@@ -97,4 +97,4 @@ void sobelConv2d(FILE* image,unsigned char(*bgr)[3])
 We receive as parameter the pointer to the image we're operating, and a pointer to the color channels with pixel data. If you pass 1d array you can pass the pointer directly on parameters, like unsigned char *bgr, if you pass "n" dimension array you need to write is as: __type(*var)[n]__
 
 
-
+##### I'll write sobel process of approximate component derivatives tomorrow, too late and I'm tired

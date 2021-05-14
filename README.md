@@ -4,7 +4,7 @@ Image processing from C scratch for educational purposes of digital image proces
 
 Compile and run with
 ```
-gcc sobelconv2.c -o sobelconv2d -lm
+gcc sobelconv2d.c -o sobelconv2d -lm
 ./sobelconv2d
 ```
 
@@ -18,7 +18,7 @@ Well I can show you a little bit of the process of convolution, keep in mind oth
 
 First of all we'll load an  image, I'll be using bmp images because its header is quite simple.
 
-First we'll create a pointer of type FILE, this is commonly called stream in C, you open files you are responsable of writing properly there.
+First we'll create a pointer of type FILE, this is commonly called stream in C, you open files and you are responsable of writing properly here.
 ```c
 int main(){
     FILE *stream;
@@ -41,16 +41,20 @@ From that, some information is important while we operate the image, which is **
     int bit_depth = *(int*)&header[28];
 ```
 What happens here is that we create an unsigned char array of lenth 54 to hold the header, and use the function fread to pass 54 bytes to our stream, we specify sizeof(unsigned char) to take 1 byte per time, since unsigned char holds 1 byte.
-Next we do *(int*)&header[18], and you should read that backwards like: we go into the memory location where header position 18 is stored, that means we're looking to a pointer (& operator), we'll cast that unsigned char pointer into a int pointer, because int holds 4 bytes, and as you can see in the table, width height and bit_depth are 4 bytes, and then we dereference the pointer (* operator) to get its 4 byte value. And we do that for height and bit_depth same way.
+Next we do 
+```c
+*(int*)&header[18]
+```
+and you should read that backwards like: we go into the memory location where header position 18 is stored, that means we're looking to a pointer (& operator), we'll cast that unsigned char pointer into a int pointer, because int holds 4 bytes, and as you can see in the table, width height and bit_depth are 4 bytes, and then we dereference the pointer (* operator) to get its 4 byte value. And we do that for height and bit_depth same way.
 ### Important:
 Bmp files are little endian, so if you are debugging that to learn, you should read the 4 bytes backwards. Little Endian means the least significant bit is at our left when reading, and most significant on the right.
 
-Next, we'll read the colortable, that pretty simple and we don't hold any information from that
+Next, we'll read the colortable, that's pretty simple and we don't hold any information from that
 ```c
 unsigned char colortable[1024];
 fread(colortable, sizeof(unsigned char), 1024, stream);
 ```
-The bit depth is important because it holds how big each pixel expect to be, if you want a RGB image, each pixel will be 3 byte long, 1 byte for each color channel, also since is little endian file, the right thing to say is BGR, and it expects the colors in that order. If you work with a grayscale image then bit depth will be 1 byte. In this case, bit depth is 24, and to get a way of knowing how many bytes bmp file is expecting we do:
+The bit depth is important because it holds how big each pixel expect to be, if you want a RGB image, each pixel will be 3 bytes long, 1 byte for each color channel, also since is little endian file, the right thing to say is BGR, and it expects the colors in that order. If you work with a grayscale image then bit depth will be 1 byte. In this case, bit depth is 24, and to get a way of knowing how many bytes bmp file is expecting we do:
 ```c
 int pixel_size = bit_depth/8;
 ```

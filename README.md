@@ -11,6 +11,9 @@ gcc sobelconv2d.c -o sobelconv2d -lm
 # BGR 2D Convolution with 3x3 Sobel kernel
 ![image](https://user-images.githubusercontent.com/56324869/118221775-aa290680-b454-11eb-990e-7bff005d9b8d.png)
 
+![image](https://user-images.githubusercontent.com/56324869/118341099-46561a80-b4f4-11eb-9fc8-76ade0410275.png)
+
+
 Ever thought about what Convolutional Neural Networks do?
 Well I can show you a little bit of the process of convolution, keep in mind other image processing is also done like Maxpooling, averagepooling, ReLu on pixels etc...
 
